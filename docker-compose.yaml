@@ -1,8 +1,8 @@
 version: "3.7"
 services:
   collect.ai:
-    build: .
-    i#image: registry.gitlab.com/goutamdevops/collect.ai
+    #build: .
+    image: registry.gitlab.com/devopsgoutam/collect.ai
     restart: always
     ports:
       - 9090:9090
