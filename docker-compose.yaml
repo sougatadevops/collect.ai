@@ -1,0 +1,26 @@
+version: "3.7"
+services:
+  collect.ai:
+    build: .
+    i#image: registry.gitlab.com/goutamdevops/collect.ai
+    restart: always
+    ports:
+      - 9090:9090
+    depends_on:
+      - mysql_db
+  mysql_db:
+    image: "mysql:5.7.33"
+    restart: always
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql-volume:/var/lib/mysql
+      - ./collect_ai_main.sql:/docker-entrypoint-initdb.d/collect_ai_main.sql
+    environment:
+      MYSQL_DATABASE: collect_ai_main
+      MYSQL_USER: analytics
+      MYSQL_PASSWORD: analytics
+      MYSQL_ROOT_PASSWORD: analytics
+
+volumes:
+    mysql-volume:
